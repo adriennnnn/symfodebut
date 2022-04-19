@@ -35,7 +35,6 @@ class CampaignController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $campaign->setId();
             $entityManager->persist($campaign);
             $entityManager->flush();
 
@@ -51,14 +50,25 @@ class CampaignController extends AbstractController
     #[Route('/{id}', name: 'app_campaign_show', methods: ['GET'])]
     public function show(Campaign $campaign, ManagerRegistry $doctrine): Response
     {
-        $payemant = [];
-        foreach($campaign->getParticipants() as $participant){
-        $payemant = $doctrine->getRepository(Payment::class)->findBy(
-            ['participantId' => $participant->getId()]
+        // ON RECUPERE ICI L'ARGENT RECOLTE EN ALLANT CHERCHER LES PAIEMENTS DIRECTEMENT GRACE A DOCTRINE
+        // Récupérer tous les paiements de chaque participant de la campagne, et l'ajouter dans $payments
+        $payments = [];
+        foreach ($campaign->getParticipants() as $participant) {
+            $participantPayments = $doctrine->getRepository(Payment::class)->findBy(
+                ['participant' => $participant]
             );
+
+            array_push($payments, ...$participantPayments);
         }
+
+        // Calculer la somme de tous les paiements
+        $sum = array_sum(array_map(function($payment) {
+            return $payment->getAmount();
+        }, $payments));
+
         return $this->render('campaign/show.html.twig', [
             'campaign' => $campaign,
+            'sum' => $sum,
         ]);
     }
 

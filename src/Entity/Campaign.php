@@ -219,6 +219,32 @@ class Campaign
 
         return $this;
     }
+    public function getRecoltedAmount(): int {
+        // ON RECUPERE ICI L'ARGENT RECOLTE DIRECTEMENT AVEC LA PROPRIETE PAYMENTS DE L'ENTITE PARTICIPANT
+        // Récupérer tous les paiements de chaque participant de la campagne, et l'ajouter dans $payments
+        $payments = [];
+        foreach ($this->getParticipants() as $participant) {
+            array_push($payments, ...$participant->getPayments());
+        }
+
+        // Calculer la somme de tous les paiements
+        $sum = array_sum(array_map(function($payment) {
+            return $payment->getAmount();
+        }, $payments));
+
+        return $sum;
+    }
+    public function getPourcent(): int {
+        $goal = $this->getGoal();
+        $recolted = $this->getRecoltedAmount();
+
+        if($goal === 0){
+            return 0;
+        }
+        return round (($recolted/$goal)*100);
+        
+    }
+
 
 
 }

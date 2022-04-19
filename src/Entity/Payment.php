@@ -24,28 +24,28 @@ class Payment
     /**
      * @var int|null
      *
-     * @ORM\Column(name="amount", type="integer", nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="amount", type="integer", nullable=true)
      */
-    private $amount = NULL;
+    private $amount;
 
     /**
      * @var \DateTime|null
      *
-     * @ORM\Column(name="created_at", type="datetime", nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="created_at", type="datetime", nullable=true)
      */
-    private $createdAt = 'NULL';
+    private $createdAt;
 
     /**
      * @var \DateTime|null
      *
-     * @ORM\Column(name="updated_at", type="datetime", nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="updated_at", type="datetime", nullable=true)
      */
-    private $updatedAt = 'NULL';
+    private $updatedAt;
 
     /**
      * @var \Participant
      *
-     * @ORM\ManyToOne(targetEntity="Participant")
+     * @ORM\ManyToOne(targetEntity="Participant", inversedBy="payments")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="participant_id", referencedColumnName="id")
      * })
@@ -104,6 +104,5 @@ class Payment
 
         return $this;
     }
-
 
 }
