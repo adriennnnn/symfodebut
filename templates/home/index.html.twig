@@ -116,31 +116,35 @@
                 {% endfor %} #}
 
 
+             {% for campaign in campaigns %}
 
 
-                    <a class="carousel-item" href="#one!">
-                        <div class="card center">
-                            <div class="card-content">
-                                <span class="card-title teal-text">Titre campagne</span>
-                                <p class="black-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit...</p>
-                            </div>
-                            <div class="card-action">
-                                <div class="row black-text">
-                                    <div class="col s6">
-                                        <i class="material-icons teal-text">account_circle</i> <b>12</b>
-                                    </div>
-                                    <div class="col s6">
-                                        <i class="material-icons teal-text">euro_symbol</i> <b>350</b>
-                                    </div>
+                        <a class="carousel-item" href="#one!">
+                            <div class="card center">
+                                <div class="card-content">
+                                    <span class="card-title teal-text">{{ campaign.title }}</span>
+                                    <p class="black-text">{{ campaign.content }}</p>
                                 </div>
+                                <div class="card-action">
+                                    <div class="row black-text">
+                                        <div class="col s6">
+                                            <i class="material-icons teal-text">account_circle</i> <b>{{campaign.participants|length}}</b>
+                                        </div>
+                                        <div class="col s6">
+                                            <i class="material-icons teal-text">euro_symbol</i> <b>{{ campaign.goal }}</b>
+                                        </div>
+                                    </div>
 
+                                </div>
+                                <div class="progress">
+                                    <div class="determinate" style="width: {{campaign.Pourcent()}}%"></div>
+                                </div>
                             </div>
-                            <div class="progress">
-                                <div class="determinate" style="width: 70%"></div>
-                            </div>
-                        </div>
-                    </a>
-                    <a class="carousel-item" href="#two!">
+                        </a>
+
+                {% endfor %}
+
+                    {# <a class="carousel-item" href="#two!">
                         <div class="card center">
                             <div class="card-content">
                                 <span class="card-title teal-text">Titre campagne</span>
@@ -223,7 +227,7 @@
                                 <div class="determinate" style="width: 70%"></div>
                             </div>
                         </div>
-                    </a>
+                    </a> #}
                 </div>
             </div>
         </div>

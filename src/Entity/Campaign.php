@@ -36,6 +36,13 @@ class Campaign
     /**
      * @var string|null
      * 
+     *           * @Assert\Length(
+     *      min = 2,
+     *      max = 50,
+     *      minMessage = "Your first name must be at least {{ limit }} characters long",
+     *      maxMessage = "Your first name cannot be longer than {{ limit }} characters"
+     * ) 
+     *
      *
      * @ORM\Column(name="content", type="text", length=5, nullable=true, options={"default"="NULL"})
      */
