@@ -30,8 +30,10 @@
                             <div class="input-field col s12 l6">
                                 <input id="mount" type="number" class="validate">
                                 <label for="mount">Votre participation</label>
+
+                                <input type="hidden" value="">
                             </div>
-                            <a href="create.html" class="btn-large waves-effect waves-light pink lighten-1 col s12 l6">Participer</a>
+                            <a href="{{ path('app_campaign_payment', {'id': campaign.id}) }}" class="btn-large waves-effect waves-light pink lighten-1 col s12 l6">Participer</a>
                             <div class="clearfix"></div>
                         </div>
                     </div>
