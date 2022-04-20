@@ -31,7 +31,6 @@
                                 <input id="mount" type="number" class="validate">
                                 <label for="mount">Votre participation</label>
 
-                                <input type="hidden" value="">
                             </div>
                             <a href="{{ path('app_campaign_payment', {'id': campaign.id}) }}" class="btn-large waves-effect waves-light pink lighten-1 col s12 l6">Participer</a>
                             <div class="clearfix"></div>
@@ -96,18 +95,41 @@
                         </thead>
 
                         <tbody>
-                        <tr>
-                            {# <td>{{participant.Email}}</td> #}
-                            <td>5€</td>
-                        </tr>
-                        <tr>
-                            <td>Alan@live.net</td>
-                            <td>12€</td>
-                        </tr>
-                        <tr>
-                            <td>Jonathan@live.net</td>
-                            <td>7€</td>
-                        </tr>
+                            {% for participant in campaign.participants %}
+
+                            {% for payment in participant.payments %}
+                                
+
+
+<tr>
+                                    <td>{{ participant.email }}</td>
+                                    <td>{{ payment.amount }}€</td>
+                                </tr>
+                                {# {% if %}
+                                <tr>
+                                    <td>{{ participant.email }}</td>
+                                    <td>{{ payment.amount }}€</td>
+                                </tr>
+                                {% elseif %}
+                                <tr>
+                                    <td>{{ participant.email }}</td>
+                                    <td>{{ payment.amount }}€</td>
+                                </tr>
+                                {% elseif %}
+                                <tr>
+                                    <td>{{ participant.email }}</td>
+                                    <td>{{ payment.amount }}€</td>
+                                </tr>
+                                {% elseif %}
+                                <tr>
+                                    <td>{{ participant.email }}</td>
+                                    <td>{{ payment.amount }}€</td>
+                                </tr> #}
+
+                            {% endfor %}
+
+
+                        {% endfor %}
                         </tbody>
                     </table>
                 </div>

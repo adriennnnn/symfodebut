@@ -37,6 +37,7 @@ class CampaignController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $campaign->setId();
             $entityManager->persist($campaign);
             $entityManager->flush();
 
@@ -122,12 +123,13 @@ class CampaignController extends AbstractController
             $entityManager->flush();
 
 
-            return $this->redirectToRoute('app_campaign_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_campaign_show', ['id'=> $campaign->getId()], Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('campaign/payment.html.twig', [
             'payment' => $payment,
             'form' => $form,
+            'campaign' => $campaign,
         ]);
     }
     //pas compris
