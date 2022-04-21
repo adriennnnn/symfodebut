@@ -24,7 +24,7 @@
                             <input id="cag_name" type="text" class="validate">
                             <label for="cag_name">Nommez votre nouvelle campagne</label>
                         </div>
-                        <a href="create.html" class="btn-large waves-effect waves-light pink lighten-1 col s12 l4">Valider</a>
+                        <a href="{{path('app_campaign_new')}}" class="btn-large waves-effect waves-light pink lighten-1 col s12 l4">Valider</a>
                     </div>
                 </div>
             </div>
@@ -119,7 +119,7 @@
              {% for campaign in campaigns %}
 
 
-                        <a class="carousel-item" href="#one!">
+                        <a class="carousel-item" href="{{ path('app_campaign_show', {'id': campaign.id}) }}">
                             <div class="card center">
                                 <div class="card-content">
                                     <span class="card-title teal-text">{{ campaign.title }}</span>

@@ -49,7 +49,7 @@
                     <div class="icon-block center">
                         <div class="btn-large btn-floating white"><i class="material-icons teal-text">person</i></div>
                         <h3 class="center">{{campaign.participants|length}}</h3>
-                        <p class="light">Participants</p>
+                        <p class="light">Participation</p>
                     </div>
                 </div>
 
@@ -108,10 +108,7 @@
                             {% for participant in campaign.participants %}
 
                             {% for payment in participant.payments %}
-                                
-
-
-<tr>
+                                <tr>
                                     <td>{{ participant.email }}</td>
                                     <td>{{ payment.amount }}€</td>
                                 </tr>

@@ -5,7 +5,7 @@
 {% block body %}
     <h1>Campaign index</h1>
 
-    <table class="table">
+    <table class="table striped">
         <thead>
             <tr>
                 <th>Id</th>
@@ -20,6 +20,7 @@
         </thead>
         <tbody>
         {% for campaign in campaigns %}
+
             <tr>
                 <td>{{ campaign.id }}</td>
                 <td>{{ campaign.title }}</td>
@@ -29,8 +30,8 @@
                 <td>{{ campaign.goal }}</td>
                 <td>{{ campaign.name }}</td>
                 <td>
-                    <a href="{{ path('app_campaign_show', {'id': campaign.id}) }}">show</a>
-                    <a href="{{ path('app_campaign_edit', {'id': campaign.id}) }}">edit</a>
+                    <a class="btn" href="{{ path('app_campaign_show', {'id': campaign.id}) }}">show</a>
+                    <a class="btn" href="{{ path('app_campaign_edit', {'id': campaign.id}) }}">edit</a>
                 </td>
             </tr>
         {% else %}
@@ -40,6 +41,7 @@
         {% endfor %}
         </tbody>
     </table>
-
-    <a href="{{ path('app_campaign_new') }}">Create new</a>
+    <br>
+    <a class="center btn" href="{{ path('app_campaign_new') }}">Create new</a>
+    <br>
 {% endblock %}
